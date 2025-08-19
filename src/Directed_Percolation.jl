@@ -17,7 +17,7 @@ using Plots
 # Core functions
 export evolve, generate_initial_state, calculate_average_density
 # Plotting functions
-export plot_density_vs_time, plot_phase_diagram, plot_lattice_evolution
+export plot_density_vs_time, plot_phase_diagram, plot_lattice_evolution, plot_staggered_lattice_grid
 
 # --- Include source files ---
 include("State_Evol.jl")
