@@ -24,8 +24,10 @@ function evolve(N::Int, p::Float64, q::Float64, t_max::Int, initial_state::Vecto
     end
 
     pq = p * q
-    prob_one_neighbor = pq
-    prob_two_neighbors = 2 * pq - pq^2
+    # prob_one_neighbor = pq
+    # prob_two_neighbors = 2 * pq - pq^2
+    prob_one_neighbor = p
+    prob_two_neighbors = p
 
     history = zeros(Int, t_max + 1, N)
     history[1, :] = initial_state

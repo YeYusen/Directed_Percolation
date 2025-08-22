@@ -10,12 +10,12 @@ the results of the directed percolation simulation.
 
 Runs multiple simulations and plots the average active site density vs. time.
 """
-function plot_density_vs_time(N::Int, p::Float64, q::Float64, t_max::Int, num_trials::Int)
+function plot_density_vs_time(N::Int, p::Float64, q::Float64, t_max::Int, num_trials::Int, density=0.5)
     println("Generating plot for p=$p, q=$q...")
     total_density_over_time = zeros(Float64, t_max + 1)
 
     for _ in 1:num_trials
-        initial_state = generate_initial_state(N, density=0.5)
+        initial_state = generate_initial_state(N, density=density)
         history = evolve(N, p, q, t_max, initial_state)
         density_over_time = calculate_average_density(history)
         total_density_over_time .+= density_over_time
@@ -23,14 +23,14 @@ function plot_density_vs_time(N::Int, p::Float64, q::Float64, t_max::Int, num_tr
 
     avg_density = total_density_over_time / num_trials
 
-    plot(0:t_max, avg_density,
+    plot(0:t_max, log.(avg_density),
         title="Average Active Site Density vs. Time\n(p=$p, q=$q, N=$N, trials=$num_trials)",
         xlabel="Time (t)",
         ylabel="Average Density",
         label="Density",
         legend=:topright,
         linewidth=2,
-        dpi=300
+        dpi=300,
     )
 end
 
